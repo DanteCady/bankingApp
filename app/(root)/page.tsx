@@ -1,8 +1,23 @@
+import HeaderBox from '@/components/ui/headerBox'
+import Head from 'next/head'
 import React from 'react'
 
 const Home = () => {
+    const loggedIn = {firstName: 'John', lastName: 'Doe'}
   return (
-    <div>Home</div>
+    <section className='home'>
+        <div className='hopme-content'>
+            <header className='home-header'>
+               <HeaderBox
+               type="greeting"
+               title="Welcome"
+               user={loggedIn?.firstName || 'Guest'}
+               subtext="Access and manage your account
+                and transactions efficiently."
+               />
+             </header>
+        </div>
+    </section>
   )
 }
 

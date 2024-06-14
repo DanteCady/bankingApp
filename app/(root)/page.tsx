@@ -1,4 +1,5 @@
 import HeaderBox from '@/components/ui/headerBox'
+import { TotalBalanceBox } from '@/components/ui/totalBalanceBox'
 import Head from 'next/head'
 import React from 'react'
 
@@ -16,6 +17,7 @@ const Home = () => {
                 and transactions efficiently."
                />
              </header>
+             <TotalBalanceBox />
         </div>
     </section>
   )

@@ -1,4 +1,7 @@
 import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+
 
 const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
 	return (
@@ -15,6 +18,32 @@ const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
 					</div>
 				</div>
 			</section>
+            <section className='banks'>
+                <div className='flex w-full justify-between'>
+                    <h2 className='header-2'>My Banks</h2>
+                    <Link  className='flex gap-2' href='/'>
+                        <Image 
+                            src='/icons/plus.svg'
+                            alt='add bank'
+                            width={20}
+                            height={20}
+                        />
+                        <h2 className='text-14 font-semibold text-gray-600 '>Add Bank</h2>
+                    </Link>
+                </div>
+                {banks.length > 0 && (
+                    <div className='relative flex flex-1 flex-col items-center justify-center gap-5'>
+                       <div className='relative z-10'>
+                            BANK CARD 1
+                       </div>
+                        {banks[1] && (
+                            <div className='absolute right-0 top-8 z-0 w-[90%]'>
+                                BANK CARD 2
+                            </div>
+                        )}
+                    </div>    
+                )}
+            </section>
 		</aside>
 	);
 };

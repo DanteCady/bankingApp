@@ -14,3 +14,12 @@ export const signUp = async (userData: SignUpParams) => {
 		console.error(error);
 	}
 };
+
+export async function getLoggedInUser() {
+	try {
+	  const { account } = await createSessionClient();
+	  return await account.get();
+	} catch (error) {
+	  return null;
+	}
+  }

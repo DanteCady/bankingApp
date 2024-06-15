@@ -81,23 +81,58 @@ const AuthForm = ({ type }: { type: string }) => {
 					<Form {...form}>
 						<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
 							{type === 'Sign-up' && (
-                            <>
-                                {/* <CustomInput/> */}
-                            </>
-                            )    
-                            }
-                            <CustomInput
-                                control={form.control}
-                                name='email'
-                                label='email'
-                                placeholder='Enter your email'
-                            />
-                              <CustomInput
-                                control={form.control}
-                                name='password'
-                                label='password'
-                                placeholder='Enter your password'
-                            />
+								<>
+									<CustomInput
+										control={form.control}
+										name="firstName"
+										label="First Name"
+										placeholder="Enter your first name"
+									/>
+									<CustomInput
+										control={form.control}
+										name="lastName"
+										label="Last Name"
+										placeholder="Enter your last name"
+									/>
+									<CustomInput
+										control={form.control}
+										name="address"
+										label="Address"
+										placeholder="Enter your last address"
+									/>
+									<CustomInput
+										control={form.control}
+										name="state"
+										label="State"
+										placeholder="Example: NY"
+									/>
+									<CustomInput
+										control={form.control}
+										name="postalCode"
+										label="Postal Code"
+										placeholder="Example: 10001"
+									/>
+                                    <CustomInput
+										control={form.control}
+										name="dateOfBirth"
+										label="Date of Birth"
+										placeholder="Example: YYYY-MM-DD"
+									/>
+								</>
+							)}
+							<CustomInput
+								control={form.control}
+								name="email"
+								label="email"
+								placeholder="Enter your email"
+							/>
+							<CustomInput
+								control={form.control}
+								name="password"
+								label="password"
+								placeholder="Enter your password"
+							/>
+
 							<div className="flex flex-col gap-4">
 								<Button type="submit" className="form-btn" disabled={isLoading}>
 									{isLoading ? (
@@ -121,11 +156,10 @@ const AuthForm = ({ type }: { type: string }) => {
 								: `Already have an account?`}
 						</p>
 						<Link
-							className="form-link"
-							href={type === 'sign-in' ? '/sign-up' : '/sign-in'}
-						>
-							{type === 'Sign-in' ? `Sign up` : `Sign in`}
-						</Link>
+							href={type === 'Sign-in' ? '/sign-up'
+                            : '/sign-in'} className='form-link'>
+                            {type === 'Sign-in' ? 'Sign up' : 'Sign in'}
+                        </Link>
 					</footer>
 				</>
 			)}

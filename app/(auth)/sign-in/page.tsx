@@ -8,7 +8,7 @@ const SignIn = () => {
       max-sm:px-6'
       >
         <AuthForm
-        type='Sign-in'
+        type='sign-in'
         /> 
       </section>
   )

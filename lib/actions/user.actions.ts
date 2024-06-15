@@ -5,12 +5,12 @@ import { createAdminClient, createSessionClient } from '../appwrite';
 import { cookies } from 'next/headers';
 import { parseStringify } from '../utils';
 
-export const signIn = async (req, res) => {
-	try {
-	} catch (error) {
-		console.error(error);
-	}
-};
+// export const signIn = async (req, res) => {
+// 	try {
+// 	} catch (error) {
+// 		console.error(error);
+// 	}
+// };
 
 export const signUp = async (userData: SignUpParams) => {
 	const { email, password, firstName, lastName } = userData;

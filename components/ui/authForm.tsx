@@ -63,7 +63,9 @@ const AuthForm = ({ type }: { type: string }) => {
                 if(Response.status === 200) {
                     router.push('/');
                 }
-            } catch (error) {
+            }  
+        } 
+            catch (error) {
             console.error(error);
 		} finally {
 			setIsLoading(false);

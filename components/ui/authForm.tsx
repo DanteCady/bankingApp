@@ -21,6 +21,8 @@ import { Loader2 } from 'lucide-react';
 import CustomInput from './customInput';
 import { useRouter } from 'next/navigation';
 import { authFormSchema } from '@/lib/utils';
+import { signUp } from '@/lib/actions/user.actions';
+import { ID } from 'node-appwrite';
 
 const authFormSchema = z.object({
 	email: z.string().email(),
@@ -48,8 +50,8 @@ const AuthForm = ({ type }: { type: string }) => {
 		try {
             // Sign up with Appwrite & create plaid link token
             if (type === 'Sign-up') {
-                const newUser = await SignUp(data);
-
+                const newUser = await signUp(data);
+                
                 setuser(user);
             } 
             if (type === 'Sign-in') {

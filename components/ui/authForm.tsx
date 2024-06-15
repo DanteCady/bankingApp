@@ -19,7 +19,8 @@ import {
 import { Input } from '@/components/ui/input';
 import { Loader2 } from 'lucide-react';
 import CustomInput from './customInput';
-import { authFormSchema } from '@/lib/authFormSchema';
+import { useRouter } from 'next/navigation';
+import { authFormSchema } from '@/lib/utils';
 
 const authFormSchema = z.object({
 	email: z.string().email(),
@@ -29,6 +30,7 @@ const authFormSchema = z.object({
 const AuthForm = ({ type }: { type: string }) => {
 	const [user, setuser] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
+    const router = useRouter();
 
 	// Define form
 	const form = useForm<z.infer<typeof authFormSchema>>({
@@ -40,11 +42,31 @@ const AuthForm = ({ type }: { type: string }) => {
 	});
 
 	// Handle form submission
-	function onSubmit(values: z.infer<typeof authFormSchema>) {
+	const onSubmit = async (data: z.infer<typeof authFormSchema>) => {
 		setIsLoading(true);
-		console.log(values);
-		setIsLoading(false);
-	}
+
+		try {
+            // Sign up with Appwrite & create plaid link token
+            if (type === 'Sign-up') {
+                const newUser = await SignUp(data);
+
+                setuser(user);
+            } 
+            if (type === 'Sign-in') {
+                const response = await SignIn({
+                    email: data.email,
+                    password: data.password,
+                
+                });
+                if(Response.status === 200) {
+                    router.push('/');
+                }
+            } catch (error) {
+            console.error(error);
+		} finally {
+			setIsLoading(false);
+		}
+	};
 
 	return (
 		<section className="auth-form">
@@ -106,13 +128,19 @@ const AuthForm = ({ type }: { type: string }) => {
 										label="State"
 										placeholder="Example: NY"
 									/>
+                                    <CustomInput
+										control={form.control}
+										name="city"
+										label="City"
+										placeholder="Enter your city"
+									/>
 									<CustomInput
 										control={form.control}
 										name="postalCode"
 										label="Postal Code"
 										placeholder="Example: 10001"
 									/>
-                                    <CustomInput
+									<CustomInput
 										control={form.control}
 										name="dateOfBirth"
 										label="Date of Birth"
@@ -156,10 +184,11 @@ const AuthForm = ({ type }: { type: string }) => {
 								: `Already have an account?`}
 						</p>
 						<Link
-							href={type === 'Sign-in' ? '/sign-up'
-                            : '/sign-in'} className='form-link'>
-                            {type === 'Sign-in' ? 'Sign up' : 'Sign in'}
-                        </Link> 
+							href={type === 'Sign-in' ? '/sign-up' : '/sign-in'}
+							className="form-link"
+						>
+							{type === 'Sign-in' ? 'Sign up' : 'Sign in'}
+						</Link>
 					</footer>
 				</>
 			)}

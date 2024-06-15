@@ -159,7 +159,7 @@ const AuthForm = ({ type }: { type: string }) => {
 							href={type === 'Sign-in' ? '/sign-up'
                             : '/sign-in'} className='form-link'>
                             {type === 'Sign-in' ? 'Sign up' : 'Sign in'}
-                        </Link>
+                        </Link> 
 					</footer>
 				</>
 			)}

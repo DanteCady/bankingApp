@@ -24,19 +24,15 @@ import { authFormSchema } from '@/lib/utils';
 import { signUp } from '@/lib/actions/user.actions';
 import { ID } from 'node-appwrite';
 
-const authFormSchema = z.object({
-	email: z.string().email(),
-	password: z.string().min(8),
-});
-
 const AuthForm = ({ type }: { type: string }) => {
 	const [user, setuser] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
+    const formSchema = authFormSchema(type);
 
 	// Define form
-	const form = useForm<z.infer<typeof authFormSchema>>({
-		resolver: zodResolver(authFormSchema),
+	const form = useForm<z.infer<typeof formSchema>>({
+		resolver: zodResolver(formSchema),
 		defaultValues: {
 			email: '',
 			password: '',
@@ -44,7 +40,7 @@ const AuthForm = ({ type }: { type: string }) => {
 	});
 
 	// Handle form submission
-	const onSubmit = async (data: z.infer<typeof authFormSchema>) => {
+	const onSubmit = async (data: z.infer<typeof formSchema>) => {
 		setIsLoading(true);
 
 		try {
@@ -55,14 +51,14 @@ const AuthForm = ({ type }: { type: string }) => {
                 setuser(user);
             } 
             if (type === 'Sign-in') {
-                const response = await SignIn({
-                    email: data.email,
-                    password: data.password,
+                // const response = await SignIn({
+                //     email: data.email,
+                //     password: data.password,
                 
-                });
-                if(Response.status === 200) {
-                    router.push('/');
-                }
+                // });
+                // if(Response.status === 200) {
+                //     router.push('/');
+                // }
             }  
         } 
             catch (error) {
@@ -91,7 +87,12 @@ const AuthForm = ({ type }: { type: string }) => {
 						className="text-26 lg:text-36 
                     font-semibold text-gray-900"
 					>
-						{user ? `Link Account` : type === 'Sign-in' ? `Sign in` : `Sign up`}
+						{user 
+                        ? `Link Account` 
+                        : type === 'sign-in' 
+                        ? `Sign In`
+                         : `Sign Up`
+                         }
 						<p className="text-16 font-normal text-gray-600">
 							{user
 								? `Link your account to get started`

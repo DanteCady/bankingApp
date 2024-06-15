@@ -7,8 +7,9 @@ export const signIn = async (req, res) => {
 	}
 };
 
-export const signUp = async (req, res) => {
+export const signUp = async (userData: SignUpParams) => {
 	try {
+        // Create a user account
 	} catch (error) {
 		console.error(error);
 	}

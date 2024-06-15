@@ -46,7 +46,7 @@ const AuthForm = ({ type }: { type: string }) => {
 
 	return (
 		<section className="auth-form">
-			<header className="flex flex-xol gap-5 md:gap-8">
+			<header className="flex flex-col gap-5 md:gap-8">
 				<Link href="/" className="cursor-pointer flex items-center gap-1 px-4">
 					<Image
 						src="/icons/logo.svg"
@@ -117,7 +117,7 @@ const AuthForm = ({ type }: { type: string }) => {
 									</div>
 								)}
 							/>
-							<Button type="submit" className="form-btn">
+							<Button type="submit" className="form-btn" disabled={isLoading}>
 								{isLoading ? (
 									<>
 										<Loader2 size={20} className="animate-spin" /> &nbsp;

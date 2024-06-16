@@ -1,7 +1,7 @@
 import React from 'react'
 import AuthForm from '@/components/ui/authForm'
 
-const SignUp = () => {
+const SignUp = async () => {
   return (
     <section className='flex-center
      size-full

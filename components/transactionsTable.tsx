@@ -82,7 +82,9 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
               </TableCell>
             </TableRow>
           )
-        })}
+        }
+      )}
+        
       </TableBody>
     </Table>
   )

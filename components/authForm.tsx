@@ -18,12 +18,12 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import CustomInput from './customInput';
+import CustomInput from '@/components/customInput';
 import { authFormSchema } from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { getLoggedInUser, signIn, signUp } from '@/lib/actions/user.actions';
-import PlaidLink from './plaidLink';
+import PlaidLink from '@/components/ui/plaidLink';
 
 const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter();
